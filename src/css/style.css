@@ -6,9 +6,31 @@
 body {
     background-color: rgba(0, 0, 0, 0.866);
     color: azure;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 300;
 }
 
 .header {
     background-color: black;
+    padding: 20px;
+    font-weight: 600;
+}
+
+main {
+    margin: 50px 100px;
+    width: 50%;
+    float: left;
+}
+
+aside {
+    width: 20%;
+    margin-top: 50 px;
+    margin-left: 5%;
+    float: left;
+}
+
+main .user {
+    margin-bottom: 50px;
+    background-color: #3e8fa0;
     padding: 20px;
 }
