@@ -1,10 +1,8 @@
 import React from 'react'
-import Header from './components/Header'
-import Users from './components/Users'
-import AddUser from './components/AddUser'
+import { IoCloseCircleSharp, IoHammerSharp } from 'react-icons/io5'
 
-class App extends React.Component {
-    constructor(props) {
+class User extends React.Component {
+constructor(props) {
         super(props)
         this.state = {
             users: [
@@ -26,25 +24,20 @@ class App extends React.Component {
                 }
             ]
         }
-        this.addUser = this.addUser.bind(this)
     }
 
+    user = this.props.user
     render() {
-        return (<div>
-            <Header title="USER LIST"/>
-            <main>
-                <Users users={this.state.users}/>
-            </main>
-            <aside>
-                <AddUser onAdd={this.addUser}/>
-            </aside>
-        </div>)
-    }
-
-    addUser(user) {
-        const id = this.state.users.length + 1
-        this.setState({ users: [...this.state.users, { id, ...user }] })
+        return (
+            <div className='user' > 
+                <IoCloseCircleSharp className='delete-icon' />
+                <IoHammerSharp className='edit-icon' />
+                <h3>{this.user.firstname} {this.user.secondname}</h3>
+                <p>{this.user.bio}</p>
+                <b>{this.user.isHappy ? 'User is happy :)' : 'No happy life :('} </b>
+            </div>
+        )
     }
 }
 
-export default App
+export default User
