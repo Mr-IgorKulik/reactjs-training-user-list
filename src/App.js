@@ -27,16 +27,18 @@ class App extends React.Component {
             ]
         }
         this.addUser = this.addUser.bind(this)
+        this.deleteUser = this.deleteUser.bind(this)
+        this.editUser = this.editUser.bind(this)
     }
 
     render() {
         return (<div>
-            <Header title="USER LIST"/>
+            <Header title="USER LIST" />
             <main>
-                <Users users={this.state.users}/>
+                <Users users={this.state.users} onEdit={this.editUser} onDelete={this.deleteUser} />
             </main>
             <aside>
-                <AddUser onAdd={this.addUser}/>
+                <AddUser onAdd={this.addUser} isEdit={false}/>
             </aside>
         </div>)
     }
@@ -45,6 +47,24 @@ class App extends React.Component {
         const id = this.state.users.length + 1
         this.setState({ users: [...this.state.users, { id, ...user }] })
     }
+
+    deleteUser(id) {
+        this.setState({
+            users: this.state.users.filter((user) => user.id !== id)
+        })
+    }
+
+    editUser(user) {
+        let allUsers = this.state.users
+        let index = allUsers.findIndex((el) => el.id == user.id)
+        allUsers[index] = user
+
+        this.setState({users: []}, () => {
+            this.setState({users: [...allUsers]})
+        })
+    }
+
+    makeNewUserForEdit(newUser, oldUser) {}
 }
 
 export default App
