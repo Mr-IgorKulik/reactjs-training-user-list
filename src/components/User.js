@@ -20,9 +20,9 @@ class User extends React.Component {
                         editForm: !this.state.editForm
                     })
                 } />
-                <h3>{this.user.firstname} {this.user.secondname}</h3>
-                <p>{this.user.bio}</p>
-                <b>{this.user.isHappy ? 'User is happy :)' : 'No happy life :('} </b>
+                <h3>{this.user.first_name} {this.user.last_name}</h3>
+                <img src={this.user.avatar}></img>
+                <p>{this.user.email}</p>
 
                 {this.state.editForm && <AddUser user={this.user} onAdd={this.props.onEdit} isEdit={true} />}
             </div>

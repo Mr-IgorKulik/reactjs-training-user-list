@@ -2,29 +2,20 @@ import React from 'react'
 import Header from './components/Header'
 import Users from './components/Users'
 import AddUser from './components/AddUser'
+import axios from 'axios'
+
+const baseUrl = "https://reqres.in/api/users?page=1"
 
 class App extends React.Component {
     constructor(props) {
         super(props)
+
+        axios.get(baseUrl).then((response) => {
+            this.setState({users: response.data.data})
+        })
+
         this.state = {
-            users: [
-                {
-                    id: 1,
-                    firstname: 'admin',
-                    secondname: 'admin',
-                    bio: 'Just application SU',
-                    age: 0,
-                    isHappy: false
-                },
-                {
-                    id: 2,
-                    firstname: 'Ihor',
-                    secondname: 'Kulik',
-                    bio: 'Java developer in NIX family',
-                    age: 26,
-                    isHappy: true
-                }
-            ]
+            users: []
         }
         this.addUser = this.addUser.bind(this)
         this.deleteUser = this.deleteUser.bind(this)
@@ -56,15 +47,13 @@ class App extends React.Component {
 
     editUser(user) {
         let allUsers = this.state.users
-        let index = allUsers.findIndex((el) => el.id == user.id)
+        let index = allUsers.findIndex((el) => el.id === user.id)
         allUsers[index] = user
 
         this.setState({users: []}, () => {
             this.setState({users: [...allUsers]})
         })
     }
-
-    makeNewUserForEdit(newUser, oldUser) {}
 }
 
 export default App
